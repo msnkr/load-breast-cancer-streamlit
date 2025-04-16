@@ -119,8 +119,8 @@ def get_user_parameters():
 
     }
 
-    feature_names = pd.DataFrame(data, index=[0])
-    return feature_names
+    features = pd.DataFrame(data, index=[0])
+    return features
 
 
 df = get_user_parameters()
@@ -136,3 +136,22 @@ clf.fit(X, y)
 
 prediction = clf.predict(df)
 prediction_proba = clf.predict_proba(df)
+
+
+st.subheader("""
+             Cat labels and their corresponding index
+             """)
+
+feature_names = pd.DataFrame(breast_cancer.target_names)
+st.write(feature_names)
+
+
+st.subheader("""
+             Prediction
+             """)
+st.write(breast_cancer.target_names[prediction])
+
+st.subheader("""
+             Prediction Probability
+             """)
+st.write(prediction_proba)
